@@ -1,8 +1,13 @@
 // Ejecutar con "npm run dev" o "npx gulp dev"
 
-const { src, dest, watch } = require('gulp');
+const { src, dest, watch, parallel } = require('gulp');
+
+// CSS
 const sass = require('gulp-sass')( require('sass'));
 const plumber = require('gulp-plumber')
+
+// Imágenes
+const webp = require('gulp-webp');
 
 
 function css( done ) {
@@ -11,6 +16,19 @@ function css( done ) {
         .pipe( plumber() )
         .pipe( sass() ) // Compila
         .pipe( dest('build/css') ); // Almacena
+
+    done();
+};
+
+function versionWebp( done ) {
+
+    const opciones = {
+        quality: 50
+    };
+
+    src('src/img/**/*.{png,jpg}')
+        .pipe( webp(opciones) )
+        .pipe( dest('build/img') )
 
     done();
 };
@@ -25,4 +43,5 @@ function dev( done ) {
 
 
 exports.css = css;
-exports.dev = dev;
+exports.versionWebp = versionWebp;
+exports.dev = parallel( versionWebp, dev );
