@@ -13,7 +13,7 @@
 
     .dia {
         text-transform: uppercase;
-        margin-bottom: 5rem;
+        margin: 5rem 0;
     }
 }
 
@@ -52,10 +52,30 @@
     background-image: url(../img/icono_edm.png);
 }
 
+.calendario {
+    @include m.reset-list;
+    li {
+        padding: 2.5rem;
+        font-weight: 700;
+
+        span {
+            font-weight: 400;
+        }
+    }
+}
+
 .bg-amarillo {
     background-color: v.$amarillo;
+
+    li:nth-child(odd) {
+        background-color: darken(v.$amarillo, 7%);
+    }
 }
 
 .bg-verde {
     background-color: v.$verde;
+
+    li:nth-child(odd) {
+        background-color: darken(v.$verde, 5%);
+    }
 }
