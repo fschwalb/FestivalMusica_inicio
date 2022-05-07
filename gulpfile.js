@@ -83,5 +83,5 @@ exports.css = css;
 exports.js = javascript;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
-// exports.versionAvif = versionAvif;
-exports.dev = parallel( imagenes, versionWebp, javascript, dev );
+exports.versionAvif = versionAvif;
+exports.dev = parallel( imagenes, versionWebp, versionAvif, javascript, dev );
