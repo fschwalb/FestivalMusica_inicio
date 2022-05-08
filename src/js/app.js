@@ -6,7 +6,68 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function iniciarApp() {
     
+    navegacionFija();
     crearGaleria();
+    scrollNav();
+};
+
+// function navegacionFija() {
+    
+//     const barra = document.querySelector('.header');
+//     const sobreFestival = document.querySelector('.sobre-festival');
+//     const body = document.querySelector('.body');
+
+//     window.addEventListener('scroll', function() {
+
+//         if ( sobreFestival.getBoundingClientRect().bottom < 0 ) {
+//             barra.classList.add('fijo');
+//             body.classList.add('body-scroll');
+//         } else {
+//             barra.classList.remove('fijo');
+//             body.classList.remove('body-scroll');
+//         };
+
+//     });
+
+// };
+
+function navegacionFija() {
+    const barra = document.querySelector('.header');
+    const sobreFestival = document.querySelector('.sobre-festival');
+    const body = document.querySelector('body');
+    let esFijo = false;
+    window.addEventListener('scroll', function() {
+        const alturaHeader = barra.offsetHeight;
+        if( sobreFestival.getBoundingClientRect().bottom - alturaHeader < 0){
+            barra.classList.add('fijo');
+            // Si el ancho de la ventana es inferior al de tablet,
+            // No se le aplica el atributo, pues no se incluye el header
+            if(window.innerWidth > 768){
+                body.style.paddingTop = barra.offsetHeight + "px";
+            }
+            //body.classList.add('body-scroll');
+        }else{
+            barra.classList.remove('fijo');
+            body.removeAttribute("style");
+        }
+    });
+}
+
+function scrollNav() {
+
+    const enlaces = document.querySelectorAll('.navegacion-principal a');
+    enlaces.forEach( enlace => {
+
+        enlace.addEventListener('click', function( e ) {
+            e.preventDefault();
+
+            const seccionScroll =  e.target.attributes.href.value;
+            const seccion = document.querySelector(seccionScroll);
+            seccion.scrollIntoView({ behavior: "smooth" });
+        });
+
+    });
+
 };
 
 function crearGaleria() {
