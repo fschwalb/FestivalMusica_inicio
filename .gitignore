@@ -1,13 +1,9 @@
 # dependencies
 /node_modules
+/src
+gulpfile.js
 /.pnp
 .pnp.js
-
-# testing
-/coverage
-
-# production
-/build
 
 # misc
 .DS_Store
